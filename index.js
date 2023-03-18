@@ -30,12 +30,15 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+  counter 2 has the variable defned in the gloabl scope
   2. Which of the two uses a closure? How can you tell?
-  
+  coutner 1 uses closure because the variable is defined in the function
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+
 */
+
+
 
 // counter1 code
 function counterMaker() {
@@ -55,6 +58,7 @@ function counter2() {
 }
 
 
+
 /* ⚾️⚾️⚾️ Task 2: inning() ⚾️⚾️⚾️
 Use the inning function below to do the following:
   1. Return a random whole number of points between 0 and 2 scored by one team in an inning
@@ -64,9 +68,10 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+    return Math.floor(Math.random() * Math.floor(3));
 }
+
 
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
@@ -83,10 +88,19 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(inningCB, innings){
+  let homeScore = 0;
+  let awaySCore = 0;
+  for (let i = 0; i < innings; i++){
+    homeScore = homeScore + inningCB();
+    awaySCore = awaySCore + inningCB();
+  }
+  return {
+    Home: homeScore,
+    Away: awaySCore
+  }
 }
-
+console.log(finalScore(inning, 9));
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
@@ -101,11 +115,15 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(inningCB) {
+  return{
+    Home: inningCB(),
+    Away: inningCB()
+  }
 
 }
 
+console.log(getInningScore(inning));
 
 /* STRETCH: ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
